@@ -1,0 +1,25 @@
+
+    <!--   <input type="text" ng-model="term" />
+      <p>{{term}}</p>
+      <button ng-click="showAlert()">Alert</button>
+     -->
+     
+     <div class="container">
+    	<div class="col-sm-8 col-sm-offset-2" ng-controller="ToDoCtrl">
+    		<legend align="center"><h1> To Do App</h1> </legend>
+    		<ng-pluralize count="todos.length"
+    		when="{'0': 'You have nothing To Do today!','one': 'You have 1 thing To Do', 'other': 'You have {} things To Do'}"></ng-pluralize><br />
+
+    		<form ng-submit="addToDo()">
+
+    			<input type="text" class="form-control" ng-model="todo.title" ng-required="true" /><br />
+    			<input type="submit" id="submit" value="submit" class="btn btn-xs btn-info" ng-disabled="{{todo.title.$invalid}}"><br />
+
+    		</form>
+
+    	<div ng-include="'todolist.html'"></div>
+
+
+    	</div>
+    </div>
+

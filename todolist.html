@@ -1,0 +1,4 @@
+		<li ng-repeat="todo in todos" ng-class="{strike: deleted}"}><input type="checkbox" ng-model="deleted">{{todo.title}} <br />
+		<h7>posted on: {{date | date:'EEEE MMMM d, yyyy'}}</h7>
+		<button ng-click="remove(todo)" class="btn btn-xs btn-danger">x</button>
+		

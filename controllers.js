@@ -1,0 +1,3 @@
+angular.modules('starter', [])
+
+	
