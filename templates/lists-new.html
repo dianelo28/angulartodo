@@ -1,0 +1,12 @@
+
+<div class="col-sm-8 col-sm-offset-2">
+
+	<form ng-submit="addList()">
+
+    	<legend align="center"><h1> New To Do List</h1> </legend>
+		<input type="text" class="form-control" ng-model="list.title" ng-required="true" /><br />
+		<input type="submit" id="submit" value="submit" class="btn btn-xs btn-info" ng-disabled="{{list.title.$invalid}}"><br />
+
+	</form>
+	
+</div>

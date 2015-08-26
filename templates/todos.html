@@ -3,12 +3,15 @@
       <p>{{term}}</p>
       <button ng-click="showAlert()">Alert</button>
      -->
-     
+
      <div class="container">
-    	<div class="col-sm-8 col-sm-offset-2" ng-controller="ToDoCtrl">
+
+    	<div class="col-sm-8 col-sm-offset-2">
     		<legend align="center"><h1> To Do App</h1> </legend>
-    		<ng-pluralize count="todos.length"
-    		when="{'0': 'You have nothing To Do today!','one': 'You have 1 thing To Do', 'other': 'You have {} things To Do'}"></ng-pluralize><br />
+    		<div>
+	    		<ng-pluralize count="todos.length"
+	    		when="{'0': 'You have nothing To Do today!','one': 'You have 1 thing To Do', 'other': 'You have {} things To Do'}"></ng-pluralize><br />
+    		</div>
 
     		<form ng-submit="addToDo()">
 

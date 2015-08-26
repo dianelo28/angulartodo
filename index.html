@@ -19,9 +19,16 @@
 
   <script src="app.js"></script>
 
+  <script src="controllers.js"></script>
+
 
 </head>
-<!-- <body ng-controller="MainCtrl">
- -->	<div ng-view></div>
-<!-- </body>
- --></html>
+
+	<ul class="nav nav-tabs">
+	  <li role="presentation"><a ng-href="/#/">Home</a></li>
+	  <li role="presentation"><a ng-href="/#/about-us">About</a></li>
+    <li role="presentation"><a ng-href="/#/lists">Lists</a></li>
+	</ul>
+  
+	<div ng-view></div>
+</html>

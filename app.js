@@ -1,16 +1,34 @@
-angular.module('starter', ['ngRoute'])
-
+var app = angular.module('starter', ['ngRoute', 'starter.controllers'] )
+ 
 	.config(['$routeProvider',
 	function($routeProvider) {
      $routeProvider.
        when('/', {
          templateUrl: 'templates/todos.html',
-         controller: 'TodoCtrl'
+         controller: 'ToDoCtrl'
+       }).
+       when('/about-us', {
+       	 templateUrl: 'templates/about-us.html',
+       	 controller: 'ToDoCtrl'
+
+       }).
+       when('/lists', {
+       	 templateUrl: 'templates/list-index.html',
+       	 controller: 'ToDoCtrl'
+
+       }).
+       when('/lists/new', {
+       	 templateUrl: 'templates/lists-new.html',
+       	 controller: 'ToDoCtrl'
+       }).
+       when('/lists/:title', {
+       	 templateUrl: 'templates/list-show.html',
+       	 controller: 'ToDoCtrl'
        }).
        otherwise({
          redirectTo: '/'
        });
-	}])
+	}]);
 
 	// .controller("MainCtrl", ['$scope', '$rootScope', 
 	// 	function($scope, $rootScope){
@@ -18,16 +36,28 @@ angular.module('starter', ['ngRoute'])
 	// 		$scope.showAlert = function(){
 	// 			alert($scope.term);
 	// 	}
-	.controller("ToDoCtrl",['$scope', '$rootScope',
-		function($scope, $rootScope){
-			$scope.todos = [];
-			$scope.addToDo = function(){
-				$scope.todos.push($scope.todo);
-				$scope.todo = "";
-			};
-			$scope.remove = function(todo){
-				var index = $scope.todos.indexOf(todo);
-				$scope.todos.splice(index, 1)
-			};
-			$scope.date = new Date()
-	}]);
+	
+app.directive('currentWeather', function() {
+    return {
+      restrict: 'E',
+      scope: {
+        city: '@'
+      },
+      template: '<div class="current-weather"><h4>Weather for {{city}}</h4>{{weather.main.temp}}</div>',
+      //tempalteUrl: 'templates/current-weather-template.html',
+      //transclude: true,
+      controller: ['$scope', '$http',
+        function ($scope, $http) {
+          var url = "http://api.openweathermap.org/data/2.5/weather?mode=json&cnt=7&units=imperial&callback=JSON_CALLBACK&q="
+          $scope.getWeather = function(city) {
+            $http({ method: 'JSONP', url: url + city })
+              .success(function(data) {
+                $scope.weather = data;
+              });
+          }
+      }],
+      link: function (scope, element, attrs) {
+        scope.weather = scope.getWeather(attrs.city);
+      }
+    }
+  });
